@@ -7,6 +7,7 @@ const dice = document.querySelector('.dice');
 const btnRoll = document.querySelector('.btn--roll');
 const btnNew = document.querySelector('.btn--new');
 const btnHold = document.querySelector('.btn--hold');
+const btnPopUp = document.querySelector('.btn--info');
 const player0 = document.getElementById('1');
 const player1 = document.getElementById('2');
 let playing, currentScore, activePlayer, scores;
@@ -70,7 +71,7 @@ btnHold.addEventListener('click', function () {
     scores[activePlayer] += currentScore;
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 100) {
       dice.classList.add('hidden');
       playing = false;
       document
@@ -85,3 +86,14 @@ btnHold.addEventListener('click', function () {
   }
 });
 btnNew.addEventListener('click', init);
+btnPopUp.addEventListener('click', function () {
+  console.log('Clicked');
+  document.querySelector('.modal').classList.remove('hidden');
+  document.querySelector('.overlay').classList.remove('hidden');
+});
+const closeModal = function () {
+  document.querySelector('.modal').classList.add('hidden');
+  document.querySelector('.overlay').classList.add('hidden');
+};
+document.querySelector('.close-modal').addEventListener('click', closeModal);
+document.querySelector('.overlay').addEventListener('click', closeModal);
